@@ -1,65 +1,35 @@
-# build.yml
+name: Build Kivy App for Android
 
-# Android specific settings
-android:
-  # Permissions required by the application
-  permissions: 
-    - NFC
-    - INTERNET
+on:
+  push:
+    branches:
+      - main
 
-  # Services required by the application
-  services:
-    - NFC
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-# iOS specific settings
-ios:
-  # Permissions required by the application
-  permissions:
-    - NFC
-    - internet
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-# Packaging settings
-packaging:
-  # Application name
-  name: POSApp
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
-  # Icon files for different platforms
-  icons:
-    # Android icon
-    android:
-      "144x144": icon.png
+      - name: Install dependencies
+        run: |
+          pip install kivy requests stripe python-dotenv
 
-    # iOS icon
-    ios:
-      "120x120": icon.png
+      - name: Build Android APK
+        run: |
+          # Your build commands here
+          # Example:
+          buildozer android debug
 
-  # Splash screen settings for different platforms
-  splash:
-    # Android splash screen
-    android:
-      "480x800": splash.png
-
-    # iOS splash screen
-    ios:
-      "320x480": splash.png
-
-# Dependencies
-requirements:
-  # List of Python packages required by the application
-  python:
-    - kivy
-    - requests
-    - stripe
-    - python-dotenv
-    - plyer
-
-  # List of system dependencies required by the application
-  system:
-    - openssl
-    - sqlite3
-
-# Environment variables
-env:
-  # Environment variables required by the application
-  vars:
-    STRIPE_API_KEY: "<your_stripe_api_key>"
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-apk
+          path: ./path/to/your/apk/file.apk
