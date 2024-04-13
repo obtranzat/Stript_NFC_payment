@@ -1,0 +1,65 @@
+# build.yml
+
+# Android specific settings
+android:
+  # Permissions required by the application
+  permissions: 
+    - NFC
+    - INTERNET
+
+  # Services required by the application
+  services:
+    - NFC
+
+# iOS specific settings
+ios:
+  # Permissions required by the application
+  permissions:
+    - NFC
+    - internet
+
+# Packaging settings
+packaging:
+  # Application name
+  name: POSApp
+
+  # Icon files for different platforms
+  icons:
+    # Android icon
+    android:
+      "144x144": icon.png
+
+    # iOS icon
+    ios:
+      "120x120": icon.png
+
+  # Splash screen settings for different platforms
+  splash:
+    # Android splash screen
+    android:
+      "480x800": splash.png
+
+    # iOS splash screen
+    ios:
+      "320x480": splash.png
+
+# Dependencies
+requirements:
+  # List of Python packages required by the application
+  python:
+    - kivy
+    - requests
+    - stripe
+    - python-dotenv
+    - plyer
+
+  # List of system dependencies required by the application
+  system:
+    - openssl
+    - sqlite3
+
+# Environment variables
+env:
+  # Environment variables required by the application
+  vars:
+    STRIPE_API_KEY: "<your_stripe_api_key>"
