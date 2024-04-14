@@ -28,7 +28,7 @@ jobs:
 
       - name: Set buildozer output
         id: buildozer
-        run: echo "::set-output name=filename::your_filename_here"
+        run: echo "::set-output name=filename::bin"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
