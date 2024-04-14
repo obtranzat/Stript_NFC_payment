@@ -21,23 +21,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install kivy requests stripe python-dotenv
-
       - name: Build Android APK
         run: |
-          # Your custom build commands here
-          # For example, if you're using a Python script to build the APK:
-          python build_script.py
-
-      - name: Check APK file
-        run: |
-          if [ ! -f ./path/to/your/apk/file.apk ]; then
-            echo "No APK file found"
-            exit 1
-          fi
+          # Your build commands here
+          # Example:
+            run: python build_script.py
 
       - name: Upload APK artifact
-        if: success()
         uses: actions/upload-artifact@v2
         with:
           name: android-apk
-          path: ./path/to/your/apk/file.apk
+          path: ./bin/*.apk
