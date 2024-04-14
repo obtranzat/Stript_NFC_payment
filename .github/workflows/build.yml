@@ -24,9 +24,15 @@ jobs:
 
       - name: Build Android APK
         run: |
-          # Your build commands here
-          # Example:
-          # buildozer android debug
+          # Assuming buildozer is installed and configured properly
+          buildozer android debug
+
+      - name: Check APK file
+        run: |
+          if [ ! -f ./bin/*.apk ]; then
+            echo "No APK file found"
+            exit 1
+          fi
 
       - name: Upload APK artifact
         if: success()
