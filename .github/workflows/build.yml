@@ -24,12 +24,13 @@ jobs:
 
       - name: Build Android APK
         run: |
-          # Assuming buildozer is installed and configured properly
-          buildozer android debug
+          # Your custom build commands here
+          # For example, if you're using a Python script to build the APK:
+          python build_script.py
 
       - name: Check APK file
         run: |
-          if [ ! -f ./bin/*.apk ]; then
+          if [ ! -f ./path/to/your/apk/file.apk ]; then
             echo "No APK file found"
             exit 1
           fi
@@ -39,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: android-apk
-          path: ./bin/*.apk
+          path: ./path/to/your/apk/file.apk
