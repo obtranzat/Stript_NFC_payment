@@ -21,12 +21,17 @@ jobs:
       - name: Install dependencies
         run: |
           pip install kivy requests stripe python-dotenv
+
       - name: Build Android APK
         run: |
           python build_script.py
+
+      - name: Set buildozer output
+        id: buildozer
+        run: echo "::set-output name=filename::your_filename_here"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
         with:
           name: android-apk
-          path: ./bin/android.apk
+          path: ${{ steps.buildozer.outputs.filename }}
