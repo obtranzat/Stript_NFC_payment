@@ -23,9 +23,7 @@ jobs:
           pip install kivy requests stripe python-dotenv
       - name: Build Android APK
         run: |
-          # Your build commands here
-          # Example:
-            run: python build_script.py
+          python build_script.py
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
