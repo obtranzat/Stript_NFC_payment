@@ -29,7 +29,8 @@ jobs:
           # buildozer android debug
 
       - name: Upload APK artifact
+        if: success()
         uses: actions/upload-artifact@v2
         with:
           name: android-apk
-          path: ./apk/TTP.apk
+          path: ./bin/*.apk
